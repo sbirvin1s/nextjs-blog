@@ -1,5 +1,6 @@
 /* ========== EXTERNAL MODULES ========== */
 import Head from "next/head";
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 
 /* ========== INTERNAL MODULES ========== */
@@ -9,8 +10,8 @@ import Date from "../../components/Date";
 import utilStyles from '../../styles/utils.module.css';
 
 /* ========== EXPORTS ========== */
-export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const postData = await getPostData(params?.id as string);
 
   return {
     props: {
@@ -19,7 +20,7 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
 
   return {
@@ -28,12 +29,15 @@ export async function getStaticPaths() {
   }
 }
 
-export default function Post({ postData }) {
-
-  /* --- STATE HOOKS --- */
-  /* --- LIFECYCLE METHODS --- */
-  /* --- EVENT HANDLERS --- */
-  /* --- RENDER METHODS --- */
+export default function Post({
+  postData
+ } : {
+  postData: {
+    title: string
+    date: string
+    contentHtml: string
+  }
+ }) {
 
   /* --- RENDERER --- */
   return (
@@ -51,5 +55,3 @@ export default function Post({ postData }) {
     </Layout>
   )
 }
-
-/* ========== STYLES ========== */

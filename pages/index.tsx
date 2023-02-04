@@ -1,6 +1,7 @@
 /* ========== EXTERNAL MODULES ========== */
 import Head from 'next/head';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 
 /* ========== INTERNAL MODULES ========== */
 import Layout, { siteTitle } from '../components/Layout';
@@ -9,7 +10,7 @@ import { getSortedPostsData } from '../lib/posts';
 import Date from '../components/Date';
 
 /* ========== EXPORTS ========== */
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
@@ -19,7 +20,15 @@ export async function getStaticProps() {
 }
 
 
-export default function Home({ allPostsData }) {
+export default function Home({
+  allPostsData
+ } : {
+  allPostsData: {
+    date: string
+    title: string
+    id: string
+  }[]
+ }) {
   return (
     <Layout home>
       <Head>

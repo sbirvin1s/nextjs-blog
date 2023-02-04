@@ -1,17 +1,12 @@
 /* ========== EXTERNAL MODULES ========== */
 import { parseISO, format } from "date-fns";
 
-/* ========== INTERNAL MODULES ========== */
-
 
 /* ========== EXPORTS ========== */
-export default function Date({ dateString }) {
+export default function Date({ dateString }: { dateString: string }) {
 
   /* --- STATE HOOKS --- */
   const date = parseISO(dateString);
-  /* --- LIFECYCLE METHODS --- */
-  /* --- EVENT HANDLERS --- */
-  /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
   return (
@@ -20,5 +15,3 @@ export default function Date({ dateString }) {
     </time>
   )
 }
-
-/* ========== STYLES ========== */
